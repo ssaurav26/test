@@ -1,0 +1,52 @@
+{
+  "name": "@wcw/credit-application",
+  "description": "",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "gulp build && tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds --root-dir=dist\"",
+    "start": "gulp deploy && tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\" \"rollup -c -w 2>rollup.log\"",
+    "build": "gulp build && packito && npm run test",
+    "deploy": "gulp deploy && tsc && rollup -c",
+    "test": "tsc && wtr --coverage",
+    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\" \"gulp watch\""
+  },
+  "dependencies": {
+    "@wcw/common-ui": "latest",
+    "@wcw/ememo-ui": "latest",
+    "lit": "^2.7.4"
+  },
+  "devDependencies": {
+    "@open-wc/testing": "^3.1.8",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@web/dev-server": "^0.1.38",
+    "@web/test-runner": "^0.15.3",
+    "concurrently": "^5.3.0",
+    "glob": "^10.2.5",
+    "gulp": "^4.0.2",
+    "koa-proxies": "^0.12.3",
+    "packito": "^0.5.0",
+    "tslib": "^2.5.2",
+    "typescript": "^4.9.5"
+  },
+  "overrides": {
+    "cache-base": {
+      "unset-value": "2.0.1"
+    },
+    "chokidar": {
+      "glob-parent": "6.0.2"
+    },
+    "fast-glob": {
+      "glob-parent": "6.0.2"
+    },
+    "glob-stream": {
+      "glob-parent": "6.0.2"
+    },
+    "vinyl-fs": {
+      "glob-parent": "6.0.2"
+    }
+  },
+  "browserslist": [
+    "last 1 Chrome versions"
+  ]
+}
